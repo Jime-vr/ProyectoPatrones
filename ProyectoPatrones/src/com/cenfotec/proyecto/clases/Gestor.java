@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import com.cenfotec.proyecto.gestores.GestorProceso;
+
 public class Gestor {
 
-	private static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
+//	private static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
 	private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 	//private static ArrayList<Historial> listaHistorial = new ArrayList<Historial>();
 
@@ -22,16 +24,16 @@ public class Gestor {
 		return tarea;
 	}
 
-	public void crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
-		Proceso proceso = new Proceso();
-
-		proceso.setNomProceso(pNomProceso);
-		proceso.setTareas(pListaTareas);
-
-		listaProcesos.add(proceso);
-
-		System.out.println("El proceso se ha almacenado correctamente");
-	}
+//	public void crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
+//		Proceso proceso = new Proceso();
+//
+//		proceso.setNomProceso(pNomProceso);
+//		proceso.setTareas(pListaTareas);
+//
+//		listaProcesos.add(proceso);
+//
+//		System.out.println("El proceso se ha almacenado correctamente");
+//	}
 
 	public void quemarDatos() throws java.io.IOException {
 
@@ -90,7 +92,8 @@ public class Gestor {
 		proceso.setNomProceso(nomProceso);
 		proceso.setTareas(tareas);
 
-		listaProcesos.add(proceso);
+//		GestorProceso procesoq = new GestorProceso();
+//		procesoq.listaProcesos.add(proceso);
 
 		System.out.println("Listo!");
 	}
@@ -108,9 +111,9 @@ public class Gestor {
 		return listaUsuarios;
 	}
 
-	public ArrayList<Proceso> getListaProcesos() throws java.io.IOException {
-		return listaProcesos;
-	}
+//	public ArrayList<Proceso> getListaProcesos() throws java.io.IOException {
+//		return listaProcesos;
+//	}
 
 	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
 		pTarea.setRespuestas(pRespuestas);
@@ -118,39 +121,39 @@ public class Gestor {
 		return pTarea;
 	}
 
-	public Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
-		int indice = pProceso.getIndiceTarea();
-		pProceso.setIndiceTarea(indice + 1);
-		pProceso.setTareas(pListaTareas);
+//	public Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
+//		int indice = pProceso.getIndiceTarea();
+//		pProceso.setIndiceTarea(indice + 1);
+//		pProceso.setTareas(pListaTareas);
+//
+//		return pProceso;
+//	}
 
-		return pProceso;
-	}
-
-	public void actualizarListaProcesos(Proceso pProAct) throws java.io.IOException {
-		String nomProAct = pProAct.getNomProceso();
-		Proceso proceso = new Proceso();
-		String nomPro;
-
-		for (int i = 0; i < listaProcesos.size(); i++) {
-			proceso = listaProcesos.get(i);
-			nomPro = proceso.getNomProceso();
-
-			if (nomProAct.equals(nomPro)) {
-				listaProcesos.remove(i);
-				listaProcesos.add(i, pProAct);
-			}
-		}
-
-		/*
-		 * Proceso procesopru = listaProcesos.get(0); ArrayList<Tarea> listatpru =
-		 * procesopru.getTareas(); Tarea tareapru = listatpru.get(0); ArrayList<String>
-		 * listaresp = tareapru.getRespuestas();
-		 * 
-		 * System.out.println(listaresp.get(0));
-		 */
-
-		System.out.println("La tarea se completó satisfactoriamente");
-	}
+//	public void actualizarListaProcesos(Proceso pProAct) throws java.io.IOException {
+//		String nomProAct = pProAct.getNomProceso();
+//		Proceso proceso = new Proceso();
+//		String nomPro;
+//
+//		for (int i = 0; i < listaProcesos.size(); i++) {
+//			proceso = listaProcesos.get(i);
+//			nomPro = proceso.getNomProceso();
+//
+//			if (nomProAct.equals(nomPro)) {
+//				listaProcesos.remove(i);
+//				listaProcesos.add(i, pProAct);
+//			}
+//		}
+//
+//		/*
+//		 * Proceso procesopru = listaProcesos.get(0); ArrayList<Tarea> listatpru =
+//		 * procesopru.getTareas(); Tarea tareapru = listatpru.get(0); ArrayList<String>
+//		 * listaresp = tareapru.getRespuestas();
+//		 * 
+//		 * System.out.println(listaresp.get(0));
+//		 */
+//
+//		System.out.println("La tarea se completó satisfactoriamente");
+//	}
 
 //	public void registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
 //		String fecha, hora;

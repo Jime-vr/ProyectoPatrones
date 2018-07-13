@@ -12,6 +12,7 @@ import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
 import com.cenfotec.proyecto.gestores.GestorHistorial;
+import com.cenfotec.proyecto.gestores.GestorProceso;
 
 /*OBSERVACIONES
  * -El gestor puede declararse de forma global
@@ -28,6 +29,7 @@ public class UI {
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
 	static GestorHistorial gestorH = new GestorHistorial();
+	static GestorProceso gestorP = new GestorProceso();
 
 	static {
 
@@ -105,7 +107,7 @@ public class UI {
 	}
 
 	/* Muestra el menú para los demás grupos --- (Se puede hacer diferente) */
-	static void verMenuGrupo(String pCorreo) throws java.io.IOException {
+	static void verMenuGrupo(String pCorreo) throws Exception {
 
 		/*
 		 * int opc; boolean noSalir = true; String[] listaMenu = {
@@ -118,6 +120,7 @@ public class UI {
 		 */
 
 		int opc = -1;
+		boolean noSalir = true;
 
 		do {
 
@@ -134,7 +137,11 @@ public class UI {
 			out.println();
 			out.println(" La opcion ingresada fue " + opc);
 			out.println();
-		} while (opc != 3);
+			noSalir = ejecutarMenuGrupo(opc, pCorreo);
+		} while (noSalir);
+		if (noSalir == false) {
+			main(null);
+		}
 	}// Modificar metodo
 
 	public static int recOpc(String pCorreo) throws IOException {
@@ -262,7 +269,7 @@ public class UI {
 		
 		listaTareas = contruirTarea(cantTareas);
 
-		gestor.crearProceso(nomProceso, listaTareas);
+		gestorP.crearProceso(nomProceso, listaTareas);
 	}// Enviar a Proceso
 
 	/* Se crean las partes de una tarea y retorna una lista de tareas */// *************************************************
@@ -432,7 +439,7 @@ public class UI {
 	 */
 	static int verProcesos(String pCorreo) throws java.io.IOException {
 		Usuario usuario = gestor.obtenerUsuario(pCorreo);
-		ArrayList<Proceso> listaProcesos = gestor.getListaProcesos();
+		ArrayList<Proceso> listaProcesos = gestorP.getListaProcesos();
 		int indice, contador = 0;
 		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
 		String grupoUsuario, grupoTarea;
@@ -473,7 +480,7 @@ public class UI {
 	 * usuario
 	 */
 	static Proceso seleccionarProceso(int opc, String pCorreo) throws java.io.IOException {
-		ArrayList<Proceso> listaProcesos = gestor.getListaProcesos();
+		ArrayList<Proceso> listaProcesos = gestorP.getListaProcesos();
 		int indice, contador = 0;
 		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
 		Usuario usuario = gestor.obtenerUsuario(pCorreo);
@@ -522,8 +529,8 @@ public class UI {
 		tarAct = gestor.actualizarTarea(tarea, respuestas);
 		listaTareas.remove(indice);
 		listaTareas.add(indice, tarAct);
-		proAct = gestor.actulizarProceso(pProceso, listaTareas);
-		gestor.actualizarListaProcesos(proAct);
+		proAct = gestorP.actulizarProceso(pProceso, listaTareas);
+		gestorP.actualizarListaProcesos(proAct);
 
 		gestorH.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
 				usuario.getNombre() + " " + usuario.getApellido());
