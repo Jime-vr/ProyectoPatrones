@@ -11,6 +11,7 @@ import com.cenfotec.proyecto.clases.Historial;
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.gestores.GestorHistorial;
 
 /*OBSERVACIONES
  * -El gestor puede declararse de forma global
@@ -26,6 +27,7 @@ public class UI {
 	static Usuario usuario = new Usuario();
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
+	static GestorHistorial gestorH = new GestorHistorial();
 
 	static {
 
@@ -402,7 +404,8 @@ public class UI {
 
 	static void verHistorial() throws java.io.IOException { // BORRAR
 
-		ArrayList<Historial> listaHistorial = gestor.getListaHistorial();
+		
+		ArrayList<Historial> listaHistorial = gestorH.getListaHistorial();
 		Historial historial;
 
 		if (listaHistorial != null) {
@@ -522,7 +525,7 @@ public class UI {
 		proAct = gestor.actulizarProceso(pProceso, listaTareas);
 		gestor.actualizarListaProcesos(proAct);
 
-		gestor.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
+		gestorH.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
 				usuario.getNombre() + " " + usuario.getApellido());
 	}// Enviar a Tarea
 }
