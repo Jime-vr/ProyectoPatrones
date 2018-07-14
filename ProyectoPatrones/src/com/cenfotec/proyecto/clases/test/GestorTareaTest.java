@@ -11,10 +11,11 @@ import org.junit.jupiter.api.Test;
 
 import com.cenfotec.proyecto.clases.Gestor;
 import com.cenfotec.proyecto.clases.Tarea;
+import com.cenfotec.proyecto.gestores.GestorTarea;
 
 class GestorTareaTest {
 
-	Gestor gestor = new Gestor();
+	GestorTarea gestor = new GestorTarea();
 	
 	@Test
 	public void crearTareaTest() throws IOException {
