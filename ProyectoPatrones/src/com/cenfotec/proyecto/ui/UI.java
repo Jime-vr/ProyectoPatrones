@@ -6,12 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import com.cenfotec.proyecto.clases.Gestor;
-import com.cenfotec.proyecto.clases.Historial;
-import com.cenfotec.proyecto.clases.Proceso;
-import com.cenfotec.proyecto.clases.Tarea;
-import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.clases.*;
 import com.cenfotec.proyecto.gestores.GestorHistorial;
+import com.cenfotec.proyecto.gestores.GestorTarea;
 
 /*OBSERVACIONES
  * -El gestor puede declararse de forma global
@@ -24,6 +21,7 @@ public class UI {
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
 	static Gestor gestor = new Gestor();
+	static GestorTarea gestorTarea = new GestorTarea();
 	static Usuario usuario = new Usuario();
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
@@ -295,7 +293,7 @@ public class UI {
 				}
 			} while (resInd > 2 || resInd < 0);
 
-			tarea = gestor.crearTarea(titTarea, grupo, listaIndicaciones);
+			tarea = gestorTarea.crearTarea(titTarea, grupo, listaIndicaciones);
 			listaTareas.add(tarea);
 		}
 
@@ -519,7 +517,7 @@ public class UI {
 			respuestas.add(in.readLine());
 		}
 
-		tarAct = gestor.actualizarTarea(tarea, respuestas);
+		tarAct = gestorTarea.actualizarTarea(tarea, respuestas);
 		listaTareas.remove(indice);
 		listaTareas.add(indice, tarAct);
 		proAct = gestor.actulizarProceso(pProceso, listaTareas);
