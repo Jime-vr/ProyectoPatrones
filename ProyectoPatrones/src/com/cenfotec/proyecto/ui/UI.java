@@ -401,7 +401,7 @@ public class UI {
 		}
 
 		return error;
-	}// Enviar a Usuario
+	}
 
 	/*
 	 * Se selecciona el proceso para ejecutar la tarea de acuerdo al grupo que

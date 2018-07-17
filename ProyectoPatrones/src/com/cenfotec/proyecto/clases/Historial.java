@@ -3,8 +3,6 @@ package com.cenfotec.proyecto.clases;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.cenfotec.proyecto.gestores.GestorHistorial;
-
 public class Historial {
 	private String nomProceso;
 	private String tituloTarea;
@@ -72,5 +70,26 @@ public class Historial {
 				+ getAutor() + "/nLa fecha: " + getFecha() + "/nA la hora: " + getHora() + "/n<-------------------------------->/n";
 		return info;
 	}
+<<<<<<< HEAD
 
+=======
+	
+	public String verHistorial() throws IOException{
+		Gestor gestor = new Gestor();
+		ArrayList<Historial> listaHistorial = gestor.getListaHistorial();
+		Historial historial;
+		
+		if(listaHistorial != null) {
+			for(int i = 0; i < listaHistorial.size(); i++) {
+				historial = listaHistorial.get(i);
+				return "\nSe ejecutÛ el proceso: " + historial.getNomProceso() + "\nSe completÛ la tarea: " + historial.getTituloTarea() + "\nPor: " + historial.getAutor() + "La fecha: " + historial.getFecha() + "A la hora: " + historial.getHora();
+			}
+		}else {
+			return "No se han ejecutado procesos";
+		}
+		return "No se han ejecutado procesos";
+		
+	}
+	
+>>>>>>> Rafael_Brice√±o
 }

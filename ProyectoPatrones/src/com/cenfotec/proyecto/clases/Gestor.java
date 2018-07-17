@@ -11,7 +11,7 @@ public class Gestor {
 
 //	private static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
 	private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-	//private static ArrayList<Historial> listaHistorial = new ArrayList<Historial>();
+	private static ArrayList<Historial> listaHistorial = new ArrayList<Historial>();
 
 	public Tarea crearTarea(String pTitTarea, String pGrupo, ArrayList<String> pListaIndicaciones)
 			throws java.io.IOException {
@@ -155,32 +155,32 @@ public class Gestor {
 //		System.out.println("La tarea se completó satisfactoriamente");
 //	}
 
-//	public void registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
-//		String fecha, hora;
-//		int anno, dia, mes, minuto, horas, segundos;
-//
-//		LocalDate fechaC = LocalDate.now();
-//		LocalTime horaC = LocalTime.now();
-//
-//		anno = fechaC.getYear();
-//		dia = fechaC.getDayOfMonth();
-//		mes = fechaC.getMonthValue();
-//
-//		fecha = anno + "-" + mes + "-" + dia;
-//
-//		minuto = horaC.getMinute();
-//		horas = horaC.getHour();
-//		segundos = horaC.getSecond();
-//
-//		hora = horas + ":" + minuto + ":" + segundos;
-//
-//		Historial historial = new Historial(pNomProceso, pTituloTarea, pAutor, fecha, hora);
-//		listaHistorial.add(historial);
-//	}
+	public void registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
+		String fecha, hora;
+		int anno, dia, mes, minuto, horas, segundos;
 
-//	public ArrayList<Historial> getListaHistorial() throws java.io.IOException {
-//		return listaHistorial;
-//	}// pasar get a la BD
+		LocalDate fechaC = LocalDate.now();
+		LocalTime horaC = LocalTime.now();
+
+		anno = fechaC.getYear();
+		dia = fechaC.getDayOfMonth();
+		mes = fechaC.getMonthValue();
+
+		fecha = anno + "-" + mes + "-" + dia;
+
+		minuto = horaC.getMinute();
+		horas = horaC.getHour();
+		segundos = horaC.getSecond();
+
+		hora = horas + ":" + minuto + ":" + segundos;
+
+		Historial historial = new Historial(pNomProceso, pTituloTarea, pAutor, fecha, hora);
+		listaHistorial.add(historial);
+	}
+
+	public ArrayList<Historial> getListaHistorial() throws java.io.IOException {
+		return listaHistorial;
+	}// pasar get a la BD
 
 	/* Se valida que el correo no este repetido */
 	public boolean validarCorreo(String pCorreo) throws IOException {

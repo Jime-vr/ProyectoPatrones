@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.cenfotec.proyecto.clases.Gestor;
 import com.cenfotec.proyecto.clases.Historial;
 import com.cenfotec.proyecto.clases.Tarea;
-import com.cenfotec.proyecto.gestores.GestorHistorial;
 
 public class GestorTest {
 	
@@ -49,7 +48,7 @@ public class GestorTest {
 	
 	@Test
 	public void verHistorialTest() throws IOException {
-		GestorHistorial h = new GestorHistorial();
+		Historial h = new Historial();
 		assertEquals("No se han ejecutado procesos", h.verHistorial());
 	}
 
