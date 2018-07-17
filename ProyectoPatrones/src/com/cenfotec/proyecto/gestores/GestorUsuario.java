@@ -100,7 +100,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 		return usuario;
 	}
 	
-	/* Se validan los datos del usuario */
+	/* Se validan los datos que se reciben del usuario */
 	public boolean validarDatosUsuario(String[] pDatos) throws java.io.IOException {
 		boolean error = false;
 
