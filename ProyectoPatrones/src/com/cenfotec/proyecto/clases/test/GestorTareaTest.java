@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.cenfotec.proyecto.clases.Gestor;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.gestores.GestorTarea;
 

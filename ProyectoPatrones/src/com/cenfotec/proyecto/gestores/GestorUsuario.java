@@ -3,6 +3,7 @@ package com.cenfotec.proyecto.gestores;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
 
  public class GestorUsuario {
@@ -11,19 +12,26 @@ import com.cenfotec.proyecto.clases.Usuario;
 	private String correo = "correo default";
 	
 	public void quemarDatosUsuario() throws java.io.IOException {
-
+		
+		GestorTarea gestorTarea = new GestorTarea();
+		GestorProceso gestorProceso = new GestorProceso();
+		
 		/* Usuarios */
-		Usuario usuario = new Usuario("Rafael", "Briceño", "Administrador", "rafa@gmail.com", "123");
+		Usuario usuario = new Usuario("Rafael", "Briceño", "administrador", "rafa@gmail.com", "123");
 		listaUsuarios.add(usuario);
 
-		Usuario usuario2 = new Usuario("Luis", "Vargas", "Recursos", "luis@gmail.com", "456");
+		Usuario usuario2 = new Usuario("Luis", "Vargas", "recursos", "luis@gmail.com", "456");
 		listaUsuarios.add(usuario2);
 
-		Usuario usuario3 = new Usuario("Juan", "Calderon", "Contaduría", "juan@gmail.com", "789");
+		Usuario usuario3 = new Usuario("Juan", "Calderon", "contaduría", "juan@gmail.com", "789");
 		listaUsuarios.add(usuario3);
 
-		Usuario usuario4 = new Usuario("Susana", "Zelaya", "Gerencia", "susana@gmail.com", "741");
+		Usuario usuario4 = new Usuario("Susana", "Zelaya", "gerencia", "susana@gmail.com", "741");
 		listaUsuarios.add(usuario4);
+		
+		ArrayList<Tarea> tareas = gestorTarea.quemarDatosTarea();
+		gestorProceso.quemarDatosProceso(tareas);
+		
 	}
 	
 	public void guardarCorreoActual(String pcorreo) {
@@ -100,11 +108,6 @@ import com.cenfotec.proyecto.clases.Usuario;
 		return usuario;
 	}
 	
-<<<<<<< HEAD
-	/* Se validan los datos que se reciben del usuario */
-=======
-	/* Se validan los datos del usuario */
->>>>>>> Silvia_Bolanos
 	public boolean validarDatosUsuario(String[] pDatos) throws java.io.IOException {
 		boolean error = false;
 

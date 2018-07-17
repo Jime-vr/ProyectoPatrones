@@ -7,12 +7,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.*;
-import com.cenfotec.proyecto.gestores.GestorHistorial;
-<<<<<<< HEAD
-import com.cenfotec.proyecto.gestores.GestorProceso;
-=======
-import com.cenfotec.proyecto.gestores.GestorTarea;
->>>>>>> Silvia_Bolanos
+import com.cenfotec.proyecto.gestores.*;
+
 
 /*OBSERVACIONES
  * -El gestor puede declararse de forma global
@@ -24,27 +20,27 @@ public class UI {
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
-	static Gestor gestor = new Gestor();
 	static GestorTarea gestorTarea = new GestorTarea();
 	static Usuario usuario = new Usuario();
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
 	static GestorHistorial gestorH = new GestorHistorial();
 	static GestorProceso gestorP = new GestorProceso();
-
+	static GestorUsuario gestorUsuario = new GestorUsuario();
+	
 	static {
-
 		try {
-			gestor.quemarDatos();
+			gestorUsuario.quemarDatosUsuario();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-
+	
+	
 	/* Se ingresan los datos para iniciar sesión */
 	public static void main(String[] args) throws Exception {
-
+		
 		menuInicial();
 
 	}
@@ -62,7 +58,7 @@ public class UI {
 			out.println("Digite su contraseña");
 			contrasenna = in.readLine();
 
-			iniciar = gestor.iniciarSesion(correo, contrasenna);
+			iniciar = gestorUsuario.iniciarSesion(correo, contrasenna);
 
 			if (iniciar) {
 				out.println("Bienvenido");
@@ -78,9 +74,9 @@ public class UI {
 	static void mostrarMenuGrupo(String pCorreo) throws Exception {
 		Usuario usuario;
 
-		usuario = gestor.obtenerUsuario(pCorreo);
+		usuario = gestorUsuario.obtenerUsuario(pCorreo);
 
-		if (usuario.getGrupo().equals("Administrador")) {// Validar grupo en InicioSesion
+		if (usuario.getGrupo().equals("administrador")) {// Validar grupo en InicioSesion
 			verMenuAdministrador();
 		} else {
 			verMenuGrupo(pCorreo);
@@ -108,27 +104,11 @@ public class UI {
 
 	/* Muestra el menú para los demás grupos --- (Se puede hacer diferente) */
 	static void verMenuGrupo(String pCorreo) throws Exception {
-<<<<<<< HEAD
-
-		/*
-		 * int opc; boolean noSalir = true; String[] listaMenu = {
-		 * "<---- Menú de ejecución de procesos ---->", " ", "1.  Ejecutar proceso",
-		 * "2.  Ver procesos disponibles", "3.  Salir", };
-		 * 
-		 * do{ mostrarMenu(listaMenu); opc = leerOpcion(); noSalir =
-		 * ejecutarMenuGrupo(opc); }while (noSalir); if(noSalir == false) { main(null);
-		 * }
-		 */
 
 		int opc = -1;
 		boolean noSalir = true;
 
-=======
-
-		int opc = -1;
-		boolean noSalir = true;
 		
->>>>>>> Jimena_Vega
 		do {
 
 			out.println("<---- Menú de ejecución de procesos ---->");
@@ -145,11 +125,10 @@ public class UI {
 			out.println(" La opcion ingresada fue " + opc);
 			out.println();
 			noSalir = ejecutarMenuGrupo(opc, pCorreo);
-<<<<<<< HEAD
+
 		} while (noSalir);
-=======
-		}  while (noSalir);
->>>>>>> Jimena_Vega
+
+
 		if (noSalir == false) {
 			main(null);
 		}
@@ -313,12 +292,12 @@ public class UI {
 				}
 			} while (resInd > 2 || resInd < 0);
 
-<<<<<<< HEAD
-			grupo.toLowerCase();
-			tarea = gestor.crearTarea(titTarea, grupo, listaIndicaciones);
-=======
+
+			grupo = grupo.toLowerCase();
 			tarea = gestorTarea.crearTarea(titTarea, grupo, listaIndicaciones);
->>>>>>> Silvia_Bolanos
+
+			tarea = gestorTarea.crearTarea(titTarea, grupo, listaIndicaciones);
+
 			listaTareas.add(tarea);
 		}
 
@@ -372,7 +351,7 @@ public class UI {
 				out.println("Digite el correo electrónico del usuario");
 				correo = in.readLine();
 
-				errorC = gestor.validarCorreo(correo);
+				errorC = gestorUsuario.validarCorreo(correo);
 
 				if (errorC) {
 					out.println(
@@ -383,7 +362,8 @@ public class UI {
 			out.println("Digite la contrasenna del usuario");
 			contrasenna = in.readLine();
 
-			grupo.toLowerCase();
+			grupo = grupo.toLowerCase();
+
 			String[] datos = { nombre, apellido, grupo, correo, contrasenna };
 			error = validarDatosUsuario(datos);
 
@@ -392,7 +372,7 @@ public class UI {
 			}
 		} while (error);
 
-		gestor.crearUsuario(nombre, apellido, grupo, correo, contrasenna);
+		gestorUsuario.crearUsuario(nombre, apellido, grupo, correo, contrasenna);
 	}
 
 	/* Se validan los datos del usuario */
@@ -431,7 +411,7 @@ public class UI {
 	 * usuario
 	 */
 	static int verProcesos(String pCorreo) throws java.io.IOException {
-		Usuario usuario = gestor.obtenerUsuario(pCorreo);
+		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
 		ArrayList<Proceso> listaProcesos = gestorP.getListaProcesos();
 		int indice, contador = 0;
 		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
@@ -476,7 +456,7 @@ public class UI {
 		ArrayList<Proceso> listaProcesos = gestorP.getListaProcesos();
 		int indice, contador = 0;
 		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
-		Usuario usuario = gestor.obtenerUsuario(pCorreo);
+		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
 		String grupoUsuario, grupoTarea;
 		Proceso procesoSelec = new Proceso();
 		;
@@ -512,7 +492,7 @@ public class UI {
 		ArrayList<String> respuestas = new ArrayList<String>();
 		Tarea tarAct = new Tarea();
 		Proceso proAct = new Proceso();
-		Usuario usuario = gestor.obtenerUsuario(pCorreo);
+		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
 
 		for (int i = 0; i < indicaciones.size(); i++) {
 			out.println(indicaciones.get(i));

@@ -9,6 +9,23 @@ public class GestorProceso {
 	
 	public static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
 
+	
+	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
+
+		/* Proceso Contratación */
+		String nomProceso = "Contratación";
+
+		Proceso proceso = new Proceso();
+		proceso.setNomProceso(nomProceso);
+		proceso.setTareas(tareas);
+
+		GestorProceso procesoq = new GestorProceso();
+		procesoq.listaProcesos.add(proceso);
+
+		System.out.println("Listo!");
+	}
+	
+	
 	public ArrayList<Proceso> getListaProcesos() {
 		return listaProcesos;
 	}
@@ -50,14 +67,6 @@ public class GestorProceso {
 				listaProcesos.add(i, pProAct);
 			}
 		}
-
-		/*
-		 * Proceso procesopru = listaProcesos.get(0); ArrayList<Tarea> listatpru =
-		 * procesopru.getTareas(); Tarea tareapru = listatpru.get(0); ArrayList<String>
-		 * listaresp = tareapru.getRespuestas();
-		 * 
-		 * System.out.println(listaresp.get(0));
-		 */
 
 		System.out.println("La tarea se completó satisfactoriamente");
 	}

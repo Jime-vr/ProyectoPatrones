@@ -20,7 +20,7 @@ public class GestorTarea {
 		return tarea;
 	}
 	
-	public void quemarDatosTarea() throws java.io.IOException {
+	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
 
 		/* Tareas del proceso Contratación */
 		String titTar = "Formulario de empleado";
@@ -57,8 +57,7 @@ public class GestorTarea {
 		tareas.add(tarea2);
 		tareas.add(tarea3);
 
-
-		System.out.println("Listo!");
+		return tareas;
 	}
 
 	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
