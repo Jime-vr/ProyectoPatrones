@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import com.cenfotec.proyecto.clases.Gestor;
-import com.cenfotec.proyecto.clases.Historial;
-import com.cenfotec.proyecto.clases.Proceso;
-import com.cenfotec.proyecto.clases.Tarea;
-import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.clases.*;
 import com.cenfotec.proyecto.gestores.GestorHistorial;
+<<<<<<< HEAD
 import com.cenfotec.proyecto.gestores.GestorProceso;
+=======
+import com.cenfotec.proyecto.gestores.GestorTarea;
+>>>>>>> Silvia_Bolanos
 
 /*OBSERVACIONES
  * -El gestor puede declararse de forma global
@@ -25,6 +25,7 @@ public class UI {
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
 	static Gestor gestor = new Gestor();
+	static GestorTarea gestorTarea = new GestorTarea();
 	static Usuario usuario = new Usuario();
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
@@ -312,8 +313,12 @@ public class UI {
 				}
 			} while (resInd > 2 || resInd < 0);
 
+<<<<<<< HEAD
 			grupo.toLowerCase();
 			tarea = gestor.crearTarea(titTarea, grupo, listaIndicaciones);
+=======
+			tarea = gestorTarea.crearTarea(titTarea, grupo, listaIndicaciones);
+>>>>>>> Silvia_Bolanos
 			listaTareas.add(tarea);
 		}
 
@@ -514,7 +519,7 @@ public class UI {
 			respuestas.add(in.readLine());
 		}
 
-		tarAct = gestor.actualizarTarea(tarea, respuestas);
+		tarAct = gestorTarea.actualizarTarea(tarea, respuestas);
 		listaTareas.remove(indice);
 		listaTareas.add(indice, tarAct);
 		proAct = gestorP.actulizarProceso(pProceso, listaTareas);

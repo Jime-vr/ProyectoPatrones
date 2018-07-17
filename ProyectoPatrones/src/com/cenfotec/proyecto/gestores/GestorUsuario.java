@@ -100,7 +100,11 @@ import com.cenfotec.proyecto.clases.Usuario;
 		return usuario;
 	}
 	
+<<<<<<< HEAD
 	/* Se validan los datos que se reciben del usuario */
+=======
+	/* Se validan los datos del usuario */
+>>>>>>> Silvia_Bolanos
 	public boolean validarDatosUsuario(String[] pDatos) throws java.io.IOException {
 		boolean error = false;
 
