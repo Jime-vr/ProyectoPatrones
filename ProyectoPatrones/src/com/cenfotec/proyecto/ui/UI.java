@@ -34,7 +34,6 @@ public class UI {
 		try {
 			gestor.quemarDatos();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -105,20 +104,11 @@ public class UI {
 	}
 
 	/* Muestra el menú para los demás grupos --- (Se puede hacer diferente) */
-	static void verMenuGrupo(String pCorreo) throws java.io.IOException {
-
-		/*
-		 * int opc; boolean noSalir = true; String[] listaMenu = {
-		 * "<---- Menú de ejecución de procesos ---->", " ", "1.  Ejecutar proceso",
-		 * "2.  Ver procesos disponibles", "3.  Salir", };
-		 * 
-		 * do{ mostrarMenu(listaMenu); opc = leerOpcion(); noSalir =
-		 * ejecutarMenuGrupo(opc); }while (noSalir); if(noSalir == false) { main(null);
-		 * }
-		 */
+	static void verMenuGrupo(String pCorreo) throws Exception {
 
 		int opc = -1;
-
+		boolean noSalir = true;
+		
 		do {
 
 			out.println("<---- Menú de ejecución de procesos ---->");
@@ -134,7 +124,11 @@ public class UI {
 			out.println();
 			out.println(" La opcion ingresada fue " + opc);
 			out.println();
-		} while (opc != 3);
+			noSalir = ejecutarMenuGrupo(opc, pCorreo);
+		}  while (noSalir);
+		if (noSalir == false) {
+			main(null);
+		}
 	}// Modificar metodo
 
 	public static int recOpc(String pCorreo) throws IOException {
@@ -183,7 +177,7 @@ public class UI {
 			break;
 
 		case 3:
-			verHistorial(); // out.println(gestor.verHistorial()); CAMBIAR A ESTO
+			out.println(gestorH.verHistorial());
 			break;
 
 		case 4:
@@ -295,6 +289,7 @@ public class UI {
 				}
 			} while (resInd > 2 || resInd < 0);
 
+			grupo.toLowerCase();
 			tarea = gestor.crearTarea(titTarea, grupo, listaIndicaciones);
 			listaTareas.add(tarea);
 		}
@@ -360,6 +355,7 @@ public class UI {
 			out.println("Digite la contrasenna del usuario");
 			contrasenna = in.readLine();
 
+			grupo.toLowerCase();
 			String[] datos = { nombre, apellido, grupo, correo, contrasenna };
 			error = validarDatosUsuario(datos);
 
@@ -400,30 +396,6 @@ public class UI {
 			proceso = seleccionarProceso(opc, pCorreo);
 			completarTarea(proceso, pCorreo);
 		}
-	}
-
-	static void verHistorial() throws java.io.IOException { // BORRAR
-
-		
-		ArrayList<Historial> listaHistorial = gestorH.getListaHistorial();
-		Historial historial;
-
-		if (listaHistorial != null) {
-			for (int i = 0; i < listaHistorial.size(); i++) {
-				historial = listaHistorial.get(i);
-				out.println("Se ejecutó el proceso: " + historial.getNomProceso());
-				out.println("Se completó la tarea: " + historial.getTituloTarea());
-				out.println("Por: " + historial.getAutor());
-				out.println("La fecha: " + historial.getFecha());
-				out.println("A la hora: " + historial.getHora());
-				out.println("");
-				out.println("<-------------------------------->");
-				out.println("");
-			}
-		} else {
-			out.println("No se han ejecutado procesos");
-		}
-
 	}
 
 	/*
