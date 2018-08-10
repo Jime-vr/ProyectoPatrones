@@ -51,7 +51,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 		System.out.println("El usuario se ha registrado correctamente");
 	}
 	
-	public ArrayList<Usuario> getListaUsuarios() throws java.io.IOException {
+	public static ArrayList<Usuario> getListaUsuarios() throws java.io.IOException {
 		return listaUsuarios;
 	}
 	
@@ -89,7 +89,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 		return iniciar;
 	}
 	
-	public Usuario obtenerUsuario(String pCorreo) throws java.io.IOException {
+	public static Usuario obtenerUsuario(String pCorreo) throws java.io.IOException {
 
 		String correo;
 		Usuario usuario = new Usuario();

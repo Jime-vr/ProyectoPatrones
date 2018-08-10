@@ -399,7 +399,7 @@ public class UI {
 			out.println("Seleccione el número del proceso que desea realizar");
 			opc = Integer.parseInt(in.readLine());
 			proceso = seleccionarProceso(opc, pCorreo);
-			completarTarea(proceso, pCorreo);
+			GestorTarea.completarTarea(proceso, pCorreo);
 		}
 	}
 
@@ -483,28 +483,28 @@ public class UI {
 	}// Enviar a Proceso
 
 	/* Se ejecuta la tarea de acuerdo al grupo del usuario */
-	static void completarTarea(Proceso pProceso, String pCorreo) throws java.io.IOException {
-		int indice = pProceso.getIndiceTarea();
-		ArrayList<Tarea> listaTareas = pProceso.getTareas();
-		Tarea tarea = listaTareas.get(indice);
-		ArrayList<String> indicaciones = tarea.getIndicaciones();
-		ArrayList<String> respuestas = new ArrayList<String>();
-		Tarea tarAct = new Tarea();
-		Proceso proAct = new Proceso();
-		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
-
-		for (int i = 0; i < indicaciones.size(); i++) {
-			out.println(indicaciones.get(i));
-			respuestas.add(in.readLine());
-		}
-
-		tarAct = gestorTarea.actualizarTarea(tarea, respuestas);
-		listaTareas.remove(indice);
-		listaTareas.add(indice, tarAct);
-		proAct = gestorP.actulizarProceso(pProceso, listaTareas);
-		gestorP.actualizarListaProcesos(proAct);
-
-		gestorH.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
-				usuario.getNombre() + " " + usuario.getApellido());
-	}// Enviar a Tarea
+//	static void completarTarea(Proceso pProceso, String pCorreo) throws java.io.IOException {
+//		int indice = pProceso.getIndiceTarea();
+//		ArrayList<Tarea> listaTareas = pProceso.getTareas();
+//		Tarea tarea = listaTareas.get(indice);
+//		ArrayList<String> indicaciones = tarea.getIndicaciones();
+//		ArrayList<String> respuestas = new ArrayList<String>();
+//		Tarea tarAct = new Tarea();
+//		Proceso proAct = new Proceso();
+//		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
+//
+//		for (int i = 0; i < indicaciones.size(); i++) {
+//			out.println(indicaciones.get(i));
+//			respuestas.add(in.readLine());
+//		}
+//
+//		tarAct = gestorTarea.actualizarTarea(tarea, respuestas);
+//		listaTareas.remove(indice);
+//		listaTareas.add(indice, tarAct);
+//		proAct = gestorP.actulizarProceso(pProceso, listaTareas);
+//		gestorP.actualizarListaProcesos(proAct);
+//
+//		gestorH.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
+//				usuario.getNombre() + " " + usuario.getApellido());
+//	}// Enviar a Tarea
 }

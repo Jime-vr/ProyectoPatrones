@@ -1,6 +1,9 @@
 package com.cenfotec.proyecto.gestores;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
@@ -9,6 +12,14 @@ public class GestorProceso {
 	
 	public static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
 
+//	
+//	List<String> list = Arrays.asList(plista);
+//
+//	Iterator<String> iterator = list.iterator();
+//
+//	while (iterator.hasNext()) {
+//		out.println(iterator.next());
+//	}
 	
 	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
 
@@ -45,7 +56,7 @@ public class GestorProceso {
 		System.out.println("El proceso se ha almacenado correctamente");
 	}
 	
-	public Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
+	public static Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
 		int indice = pProceso.getIndiceTarea();
 		pProceso.setIndiceTarea(indice + 1);
 		pProceso.setTareas(pListaTareas);
@@ -53,7 +64,7 @@ public class GestorProceso {
 		return pProceso;
 	}
 	
-	public void actualizarListaProcesos(Proceso pProAct) throws java.io.IOException {
+	public static void actualizarListaProcesos(Proceso pProAct) throws java.io.IOException {
 		String nomProAct = pProAct.getNomProceso();
 		Proceso proceso = new Proceso();
 		String nomPro;

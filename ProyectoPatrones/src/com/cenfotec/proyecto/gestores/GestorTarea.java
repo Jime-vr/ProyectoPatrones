@@ -1,5 +1,7 @@
 package com.cenfotec.proyecto.gestores;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Proceso;
@@ -8,6 +10,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 
 public class GestorTarea {
 	
+	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	public Tarea crearTarea(String pTitTarea, String pGrupo, ArrayList<String> pListaIndicaciones)
 			throws java.io.IOException {
@@ -60,10 +63,34 @@ public class GestorTarea {
 		return tareas;
 	}
 
-	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
+	public static Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
 		pTarea.setRespuestas(pRespuestas);
 
 		return pTarea;
 	}
 	
+	public static void completarTarea(Proceso pProceso, String pCorreo) throws java.io.IOException {
+		int indice = pProceso.getIndiceTarea();
+		ArrayList<Tarea> listaTareas = pProceso.getTareas();
+		Tarea tarea = listaTareas.get(indice);
+		ArrayList<String> indicaciones = tarea.getIndicaciones();
+		ArrayList<String> respuestas = new ArrayList<String>();
+		Tarea tarAct = new Tarea();
+		Proceso proAct = new Proceso();
+		Usuario usuario = GestorUsuario.obtenerUsuario(pCorreo);
+
+		for (int i = 0; i < indicaciones.size(); i++) {
+			System.out.println(indicaciones.get(i));
+			respuestas.add(in.readLine());
+		}
+
+		tarAct = actualizarTarea(tarea, respuestas);
+		listaTareas.remove(indice);
+		listaTareas.add(indice, tarAct);
+		proAct = GestorProceso.actulizarProceso(pProceso, listaTareas);
+		GestorProceso.actualizarListaProcesos(proAct);
+
+		GestorHistorial.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
+				usuario.getNombre() + " " + usuario.getApellido());
+	}
 }

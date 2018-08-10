@@ -19,7 +19,7 @@ public class GestorHistorial {
 		GestorHistorial.listaHistorial = listaHistorial;
 	}
 
-	public Historial registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
+	public static Historial registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
 		String fecha, hora;
 		int anno, dia, mes, minuto, horas, segundos;
 
