@@ -1,25 +1,12 @@
 package com.cenfotec.proyecto.gestores;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 
 public class GestorProceso {
 	
 	public static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
-
-//	
-//	List<String> list = Arrays.asList(plista);
-//
-//	Iterator<String> iterator = list.iterator();
-//
-//	while (iterator.hasNext()) {
-//		out.println(iterator.next());
-//	}
 	
 	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
 
@@ -80,6 +67,8 @@ public class GestorProceso {
 		}
 
 		System.out.println("La tarea se completó satisfactoriamente");
+		
+		
 	}
 	
 	

@@ -3,7 +3,6 @@ package com.cenfotec.proyecto.gestores;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
@@ -90,7 +89,6 @@ public class GestorTarea {
 		proAct = GestorProceso.actulizarProceso(pProceso, listaTareas);
 		GestorProceso.actualizarListaProcesos(proAct);
 
-		GestorHistorial.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(),
-				usuario.getNombre() + " " + usuario.getApellido());
+		GestorHistorial.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(), usuario.getNombre() + " " + usuario.getApellido());
 	}
 }
