@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 
-public class GestorTarea {
+public class GestorTarea implements InterfaceGestores{
 	
+	static ArrayList<Tarea> infoTarea = new ArrayList<Tarea>();
 	
 	public Tarea crearTarea(String pTitTarea, String pGrupo, ArrayList<String> pListaIndicaciones)
 			throws java.io.IOException {
@@ -20,7 +22,7 @@ public class GestorTarea {
 		return tarea;
 	}
 	
-	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
+	public void quemarDatos() throws java.io.IOException {
 
 		/* Tareas del proceso Contratación */
 		String titTar = "Formulario de empleado";
@@ -44,7 +46,7 @@ public class GestorTarea {
 		tarea2.setIndicaciones(indicaciones2);
 
 		String titTar3 = "Asignación de puesto";
-		String grupo3 = "Gerencia";
+		String grupo3 = "gerencia";
 		ArrayList<String> indicaciones3 = new ArrayList<String>();
 		indicaciones3.add("Indique el puesto del empleado");
 		Tarea tarea3 = new Tarea();
@@ -52,12 +54,13 @@ public class GestorTarea {
 		tarea3.setGrupoResponsable(grupo3);
 		tarea3.setIndicaciones(indicaciones3);
 
-		ArrayList<Tarea> tareas = new ArrayList<Tarea>();
-		tareas.add(tarea1);
-		tareas.add(tarea2);
-		tareas.add(tarea3);
-
-		return tareas;
+		infoTarea.add(tarea1);
+		infoTarea.add(tarea2);
+		infoTarea.add(tarea3);
+	}
+	
+	public ArrayList<Tarea> obtenerTarea(){
+		return infoTarea;
 	}
 
 	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
