@@ -25,6 +25,7 @@ public class GestorProceso {
 		System.out.println("Listo!");
 	}
 	
+	
 	public ArrayList<Proceso> getListaProcesos() {
 		return listaProcesos;
 	}

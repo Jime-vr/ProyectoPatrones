@@ -29,7 +29,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 		Usuario usuario4 = new Usuario("Susana", "Zelaya", "gerencia", "susana@gmail.com", "741");
 		listaUsuarios.add(usuario4);
 		
-		ArrayList<Tarea> tareas = gestorTarea.obtenerTareas();
+		ArrayList<Tarea> tareas = gestorTarea.quemarDatosTarea();
 		gestorProceso.quemarDatosProceso(tareas);
 		
 	}
