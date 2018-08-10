@@ -8,7 +8,8 @@ import com.cenfotec.proyecto.clases.Usuario;
 
 public class GestorTarea {
 	
-	
+	private static ArrayList<Tarea> infoTareas = new ArrayList<Tarea>();
+
 	public Tarea crearTarea(String pTitTarea, String pGrupo, ArrayList<String> pListaIndicaciones)
 			throws java.io.IOException {
 		Tarea tarea = new Tarea();
@@ -20,7 +21,7 @@ public class GestorTarea {
 		return tarea;
 	}
 	
-	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
+	public void quemarDatosTarea() throws java.io.IOException {
 
 		/* Tareas del proceso Contratación */
 		String titTar = "Formulario de empleado";
@@ -52,12 +53,15 @@ public class GestorTarea {
 		tarea3.setGrupoResponsable(grupo3);
 		tarea3.setIndicaciones(indicaciones3);
 
-		ArrayList<Tarea> tareas = new ArrayList<Tarea>();
-		tareas.add(tarea1);
-		tareas.add(tarea2);
-		tareas.add(tarea3);
+	
+		infoTareas.add(tarea1);
+		infoTareas.add(tarea2);
+		infoTareas.add(tarea3);
 
-		return tareas;
+	}
+	
+	public ArrayList<Tarea> obtenerTareas(){
+		return infoTareas;
 	}
 
 	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
