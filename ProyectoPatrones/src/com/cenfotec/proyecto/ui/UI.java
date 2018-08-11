@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.*;
 import com.cenfotec.proyecto.gestores.*;
+import com.cenfotec.proyecto.multi.Multi;
+import com.cenfotec.proyecto.multi.MultiUsuario;
 
 
 /*OBSERVACIONES
@@ -58,7 +60,7 @@ public class UI {
 			out.println("Digite su contraseña");
 			contrasenna = in.readLine();
 
-			iniciar = gestorUsuario.iniciarSesion(correo, contrasenna);
+			iniciar = MultiUsuario.iniciarSesion(correo, contrasenna);
 
 			if (iniciar) {
 				out.println("Bienvenido");

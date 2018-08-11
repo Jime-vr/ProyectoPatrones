@@ -66,4 +66,7 @@ public class GestorTarea {
 		return pTarea;
 	}
 	
+	
+	
+	
 }

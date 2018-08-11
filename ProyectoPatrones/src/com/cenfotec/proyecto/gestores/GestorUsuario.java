@@ -44,9 +44,12 @@ import com.cenfotec.proyecto.clases.Usuario;
 	
 	public void crearUsuario(String pNombre, String pApellido, String pGrupo, String pCorreo, String pContrasenna)
 			throws java.io.IOException {
-		Usuario usuario = new Usuario(pNombre, pApellido, pGrupo, pCorreo, pContrasenna);
-
-		listaUsuarios.add(usuario);
+		
+		// ENVIAR AL MULTIUSUARIO
+		
+//		Usuario usuario = new Usuario(pNombre, pApellido, pGrupo, pCorreo, pContrasenna);
+//		
+//		listaUsuarios.add(usuario);
 
 		System.out.println("El usuario se ha registrado correctamente");
 	}

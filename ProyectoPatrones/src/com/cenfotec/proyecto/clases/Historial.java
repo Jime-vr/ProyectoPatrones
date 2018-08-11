@@ -62,7 +62,7 @@ public class Historial {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-
+	
 	public String toString() {
 		String info = "";
 
