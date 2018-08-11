@@ -12,7 +12,7 @@ public class GestorProceso {
 	
 	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
 
-		/* Proceso Contratación */
+		
 		String nomProceso = "Contratación";
 
 		Proceso proceso = new Proceso();
@@ -34,7 +34,7 @@ public class GestorProceso {
 		GestorProceso.listaProcesos = listaProcesos;
 	}
 	
-	public void crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
+	public Proceso crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
 		Proceso proceso = new Proceso();
 
 		proceso.setNomProceso(pNomProceso);
@@ -43,6 +43,7 @@ public class GestorProceso {
 		listaProcesos.add(proceso);
 
 		System.out.println("El proceso se ha almacenado correctamente");
+		return proceso;
 	}
 	
 	public Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {

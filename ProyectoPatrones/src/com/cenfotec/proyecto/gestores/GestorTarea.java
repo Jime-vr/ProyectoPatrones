@@ -2,9 +2,7 @@ package com.cenfotec.proyecto.gestores;
 
 import java.util.ArrayList;
 
-import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
-import com.cenfotec.proyecto.clases.Usuario;
 
 public class GestorTarea {
 	
@@ -22,7 +20,7 @@ public class GestorTarea {
 	
 	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
 
-		/* Tareas del proceso Contratación */
+		
 		String titTar = "Formulario de empleado";
 		String grupo = "Recursos";
 		ArrayList<String> indicaciones1 = new ArrayList<String>();

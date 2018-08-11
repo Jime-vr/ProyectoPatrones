@@ -112,7 +112,7 @@ public class UI {
 
 	static void verMenuGrupo(String pCorreo) throws Exception {
 
-		int opc = -1;
+		int opc;
 		boolean noSalir = true;
 
 		do {
@@ -314,7 +314,6 @@ public class UI {
 			grupo = grupo.toLowerCase();
 			tarea = gestorTarea.crearTarea(titTarea, grupo, listaIndicaciones);
 
-			tarea = gestorTarea.crearTarea(titTarea, grupo, listaIndicaciones);
 
 			listaTareas.add(tarea);
 
@@ -445,7 +444,7 @@ public class UI {
 		
 		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
 		ArrayList<Proceso> listaProcesos = gestorP.getListaProcesos();
-		int indice, contador = 0;
+		int indice = 0, contador = 0;
 		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
 		String grupoUsuario, grupoTarea;
 

@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import com.cenfotec.proyecto.clases.Historial;
 import com.cenfotec.proyecto.gestores.GestorHistorial;
 
 class GestorHistorialTest {
