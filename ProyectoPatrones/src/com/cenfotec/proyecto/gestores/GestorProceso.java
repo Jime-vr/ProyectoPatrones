@@ -14,9 +14,15 @@ public class GestorProceso implements InterfaceGestores{
 	static GestorTarea gT = new GestorTarea();
 >>>>>>> .merge_file_a04256
 	
+<<<<<<< HEAD
 	public void quemarDatos() throws java.io.IOException {
 		/* Proceso Contratación */
 		ArrayList<Tarea> tareas = gT.obtenerTarea();
+=======
+	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
+
+		
+>>>>>>> josue_calderon
 		String nomProceso = "Contratación";
 
 		Proceso proceso = new Proceso();
@@ -37,7 +43,7 @@ public class GestorProceso implements InterfaceGestores{
 		GestorProceso.listaProcesos = listaProcesos;
 	}
 	
-	public void crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
+	public Proceso crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
 		Proceso proceso = new Proceso();
 
 		proceso.setNomProceso(pNomProceso);
@@ -46,6 +52,7 @@ public class GestorProceso implements InterfaceGestores{
 		listaProcesos.add(proceso);
 
 		System.out.println("El proceso se ha almacenado correctamente");
+		return proceso;
 	}
 	
 	public static Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {

@@ -52,7 +52,6 @@ import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 		return listaUsuarios;
 	}
 	
-	/* Se valida que el correo no este repetido */
 	public boolean validarCorreo(String pCorreo) throws IOException {
 		boolean error = false;
 
@@ -66,7 +65,6 @@ import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 		return error;
 	}
 	
-	/* Valida los datos ingresados para el inicio de sesión */
 	public boolean iniciarSesion(String pCorreo, String pContrasenna) throws java.io.IOException {
 		boolean iniciar = false;
 		String correo, contrasenna;

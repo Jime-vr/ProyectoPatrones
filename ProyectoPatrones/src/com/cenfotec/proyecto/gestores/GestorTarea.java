@@ -3,10 +3,15 @@ package com.cenfotec.proyecto.gestores;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
 import com.cenfotec.proyecto.fabrica.InterfaceGestores;
+=======
+
+import com.cenfotec.proyecto.clases.Tarea;
+>>>>>>> josue_calderon
 
 public class GestorTarea implements InterfaceGestores{
 	
@@ -29,7 +34,7 @@ public class GestorTarea implements InterfaceGestores{
 	
 	public void quemarDatos() throws java.io.IOException {
 
-		/* Tareas del proceso Contratación */
+		
 		String titTar = "Formulario de empleado";
 		String grupo = "Recursos";
 		ArrayList<String> indicaciones1 = new ArrayList<String>();
