@@ -6,8 +6,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Historial;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 
-public class GestorHistorial {
+public class GestorHistorial implements InterfaceGestores{
 
 	private static ArrayList<Historial> listaHistorial = new ArrayList<Historial>();
 
@@ -59,5 +60,11 @@ public class GestorHistorial {
 			info =  "No se han ejecutado procesos";
 		}
 		return info;
+	}
+
+	@Override
+	public void quemarDatos() throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 }

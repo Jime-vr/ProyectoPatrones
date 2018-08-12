@@ -3,22 +3,27 @@ package com.cenfotec.proyecto.gestores;
 import java.util.ArrayList;
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 
-public class GestorProceso {
+public class GestorProceso implements InterfaceGestores{
 	
+<<<<<<< .merge_file_a14476
 	public static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
+=======
+	static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
+	static GestorTarea gT = new GestorTarea();
+>>>>>>> .merge_file_a04256
 	
-	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
-
+	public void quemarDatos() throws java.io.IOException {
 		/* Proceso Contratación */
+		ArrayList<Tarea> tareas = gT.obtenerTarea();
 		String nomProceso = "Contratación";
 
 		Proceso proceso = new Proceso();
 		proceso.setNomProceso(nomProceso);
 		proceso.setTareas(tareas);
 
-		GestorProceso procesoq = new GestorProceso();
-		procesoq.listaProcesos.add(proceso);
+		listaProcesos.add(proceso);
 
 		System.out.println("Listo!");
 	}

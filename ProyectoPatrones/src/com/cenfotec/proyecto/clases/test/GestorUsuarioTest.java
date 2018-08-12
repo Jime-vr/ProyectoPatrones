@@ -10,7 +10,7 @@ class GestorUsuarioTest {
 	@Test
 	public void validarCorreoTest() throws IOException {
 		GestorUsuario gu = new GestorUsuario();
-		gu.quemarDatosUsuario();
+		gu.quemarDatos();
 		assertEquals(false, gu.validarCorreo("silvia@gmail.com"));
 		assertEquals(true, gu.validarCorreo("susana@gmail.com"));
 	}
@@ -24,7 +24,7 @@ class GestorUsuarioTest {
 	@Test
 	public void obtenerCorreoUsuarioTest2()throws IOException{
 		GestorUsuario gu = new GestorUsuario();
-		gu.quemarDatosUsuario();
+		gu.quemarDatos();
 		gu.iniciarSesion("susana@gmail.com", "741");
 		assertEquals("susana@gmail.com",gu.obtenerCorreoUsuario());
 	}
@@ -32,7 +32,7 @@ class GestorUsuarioTest {
 	@Test
 	public void obtenerCorreoUsuarioTest3()throws IOException{
 		GestorUsuario gu = new GestorUsuario();
-		gu.quemarDatosUsuario();
+		gu.quemarDatos();
 		gu.iniciarSesion("roberto@gmail.com", "7524");
 		assertEquals("correo default",gu.obtenerCorreoUsuario());
 	}
