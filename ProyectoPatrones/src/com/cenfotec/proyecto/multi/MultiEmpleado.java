@@ -1,11 +1,13 @@
-package prototipo.patrones;
+package com.cenfotec.proyecto.multi;
+
 import java.sql.SQLException;
 import java.util.Vector;
 
-import bd.Conector;
-
 public class MultiEmpleado {
 
+	/*
+	
+	
    // C
 	
 	public void cambiarAutorizacion(String usuario, String autorizacion) throws Exception {
@@ -170,5 +172,8 @@ public class MultiEmpleado {
         
     return dep;
     }
+    
+    
+    */
     
 }

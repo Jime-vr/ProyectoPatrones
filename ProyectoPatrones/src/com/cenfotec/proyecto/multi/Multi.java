@@ -1,4 +1,4 @@
-package com.cenfotec.protecto.multi;
+package com.cenfotec.proyecto.multi;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 
 public class Multi {
 	
-	public static ArrayList<String> datos = Conector.obtenerDatosAcceso();
+	//public static ArrayList<String> datos = Conector.obtenerDatosAcceso();
 	
 	public static void dbSelect(String query) {
 		try {

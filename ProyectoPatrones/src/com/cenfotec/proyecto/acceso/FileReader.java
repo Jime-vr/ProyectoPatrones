@@ -1,4 +1,4 @@
-package bd;
+package com.cenfotec.proyecto.acceso;
 
 
 import java.io.BufferedReader;

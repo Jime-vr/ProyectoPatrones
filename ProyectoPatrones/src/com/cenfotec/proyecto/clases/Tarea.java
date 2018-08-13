@@ -7,6 +7,7 @@ public class Tarea {
 	private String grupoResponsable;
 	private ArrayList<String> indicaciones = new ArrayList<String>();
 	private ArrayList<String> respuestas = new ArrayList<String>();
+	private String nomProceso; 
 	
 	public Tarea() {
 		
@@ -18,6 +19,15 @@ public class Tarea {
 		this.grupoResponsable = grupoResponsable;
 		this.indicaciones = indicaciones;
 		this.respuestas = respuestas;
+	}
+	
+	public Tarea(String nomProceso, String titulo, String grupoResponsable) {
+		super();
+		this.nomProceso = nomProceso;
+		this.titulo = titulo;
+		this.grupoResponsable = grupoResponsable;
+		this.indicaciones = null;
+		this.respuestas = null;
 	}
 	
 	public String getTitulo() {
@@ -46,5 +56,13 @@ public class Tarea {
 	}
 	public void setRespuestas(ArrayList<String> respuestas) {
 		this.respuestas = respuestas;
+	}
+
+	public String getNomProceso() {
+		return nomProceso;
+	}
+
+	public void setNomProceso(String nomProceso) {
+		this.nomProceso = nomProceso;
 	}
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bd;
+package com.cenfotec.proyecto.acceso;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -50,7 +50,7 @@ public static AccesoBD getConector()throws java.sql.SQLException,Exception
           reader.close();//se cierra el reader.
           
         if(conectorBD==null){
-        conectorBD = new AccesoBD("com.mysql.cj.jdbc.Driver" ,"jdbc:mysql://localhost/patrones_prototipo?user=root&password=");
+        conectorBD = new AccesoBD("com.mysql.cj.jdbc.Driver" ,"jdbc:mysql://localhost/bd_patrones?user=root&password=");
         }
           
         }
