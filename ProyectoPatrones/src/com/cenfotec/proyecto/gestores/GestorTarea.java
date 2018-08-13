@@ -13,7 +13,7 @@ public class GestorTarea implements InterfaceGestores{
 	
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
+	static GestorUsuario gU = new GestorUsuario();
 	static ArrayList<Tarea> infoTarea = new ArrayList<Tarea>();
 
 	
@@ -75,7 +75,7 @@ public class GestorTarea implements InterfaceGestores{
 		return pTarea;
 	}
 	
-	public static void completarTarea(Proceso pProceso, String pCorreo) throws java.io.IOException {
+	public void completarTarea(Proceso pProceso, String pCorreo) throws java.io.IOException {
 		int indice = pProceso.getIndiceTarea();
 		ArrayList<Tarea> listaTareas = pProceso.getTareas();
 		
@@ -88,7 +88,7 @@ public class GestorTarea implements InterfaceGestores{
 		ArrayList<String> respuestas = new ArrayList<String>();
 		Tarea tarAct = new Tarea();
 		Proceso proAct = new Proceso();
-		Usuario usuario = GestorUsuario.obtenerUsuario(pCorreo);
+		Usuario usuario = gU.obtenerUsuario(pCorreo);
 
 		for (int i = 0; i < indicaciones.size(); i++) {
 			System.out.println(indicaciones.get(i));

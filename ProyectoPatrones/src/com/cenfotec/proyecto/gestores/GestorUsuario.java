@@ -84,7 +84,7 @@ import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 		return iniciar;
 	}
 	
-	public static Usuario obtenerUsuario(String pCorreo) throws java.io.IOException {
+	public Usuario obtenerUsuario(String pCorreo) throws java.io.IOException {
 
 		String correo;
 		Usuario usuario = new Usuario();
@@ -114,4 +114,5 @@ import com.cenfotec.proyecto.fabrica.InterfaceGestores;
  
 		return error;
 	}
+	
  }

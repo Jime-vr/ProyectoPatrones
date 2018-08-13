@@ -15,7 +15,6 @@ public class UI {
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
-
 	static Usuario usuario = new Usuario();
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
@@ -75,6 +74,7 @@ public class UI {
 		Usuario usuario;
 
 		usuario = gU.obtenerUsuario(pCorreo);
+		
 		if (usuario.getGrupo().equals("administrador")) {
 
 			verMenuAdministrador();
@@ -207,7 +207,7 @@ public class UI {
 			ejecutarProceso(pCorreo);
 			break;
 		case 2:
-			num = verProcesos(pCorreo);
+			num = gP.verProcesos(pCorreo);
 			break;
 		case 3:
 			noSalir = false;
@@ -347,7 +347,7 @@ public class UI {
 			contrasenna = in.readLine();
 			grupo = grupo.toLowerCase();
 			String[] datos = { nombre, apellido, grupo, correo, contrasenna };
-			error = validarDatosUsuario(datos);
+			error = gU.validarDatosUsuario(datos);
 			if (error) {
 
 				out.println("Dejó datos en blanco; Por favor digite los datos correctamente");
@@ -358,124 +358,23 @@ public class UI {
 		gU.crearUsuario(nombre, apellido, grupo, correo, contrasenna);
 	}
 
-	static boolean validarDatosUsuario(String[] pDatos) throws java.io.IOException {
 
-		boolean error = false;
-		for (int i = 0; i < pDatos.length; i++) {
-
-			if (pDatos[i].equals("") || pDatos[i].equals(" ")) {
-				error = true;
-
-			}
-
-		}
-		return error;
-	}
 
 	static void ejecutarProceso(String pCorreo) throws java.io.IOException {
 
 		int cantProc = 0, opc;
 		Proceso proceso;
-		cantProc = verProcesos(pCorreo);
+		cantProc = gP.verProcesos(pCorreo);
 		if (cantProc > 0) {
 
 			out.println("Seleccione el número del proceso que desea realizar");
 			opc = Integer.parseInt(in.readLine());
-			proceso = seleccionarProceso(opc, pCorreo);
+			proceso = gP.seleccionarProceso(opc, pCorreo);
 
 			gT.completarTarea(proceso, pCorreo);
 		}
 
 	}
 
-	static int verProcesos(String pCorreo) throws java.io.IOException {
-		Usuario usuario = gU.obtenerUsuario(pCorreo);
-		ArrayList<Proceso> listaProcesos = gP.getListaProcesos();
-		int indice = 0, contador = 0;
-		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
-		String grupoUsuario, grupoTarea;
-
-		Iterator<Proceso> iterator = listaProcesos.iterator();
-
-		while (iterator.hasNext()) {
-
-			proceso = iterator.next();
-			indice = proceso.getIndiceTarea();
-
-			
-
-			listaTareas = proceso.getTareas();
-			tarea = listaTareas.get(indice);
-
-			grupoUsuario = usuario.getGrupo();
-			grupoTarea = tarea.getGrupoResponsable();
-
-			if (grupoUsuario.equals(grupoTarea)) {
-
-				out.println("");
-				out.println((contador + 1) + ".");
-				out.println("Proceso: " + proceso.getNomProceso());
-				out.println("Tarea: " + tarea.getTitulo());
-				out.println("");
-				out.println("<---------------------->");
-				contador++;
-
-			}
-
-		}
-		if (contador == 0) {
-
-			out.println("");
-			out.println("No hay tareas de procesos a ejecutar disponibles");
-			out.println("");
-
-		}
-
-		return contador;
-
-	}
-
-	static Proceso seleccionarProceso(int opc, String pCorreo) throws java.io.IOException {
-
-		ArrayList<Proceso> listaProcesos = gP.getListaProcesos();
-		ArrayList<Tarea> listaTareas = new ArrayList<Tarea>();
-		int indice, contador = 0;
-
-		Usuario usuario = gU.obtenerUsuario(pCorreo);
-		String grupoUsuario, grupoTarea;
-		Proceso procesoSelec = new Proceso();
-
-		for (int i = 0; i < listaProcesos.size(); i++) {
-
-			proceso = listaProcesos.get(i);
-			indice = proceso.getIndiceTarea();
-
-
-			if(indice > 1) {
-				indice = indice -1;
-			}
-			
-			
-			listaTareas = proceso.getTareas();
-			tarea = listaTareas.get(indice);
-
-			grupoUsuario = usuario.getGrupo();
-			grupoTarea = tarea.getGrupoResponsable();
-
-			if (grupoUsuario.equals(grupoTarea)) {
-				if ((opc - 1) == contador) {
-
-					procesoSelec = proceso;
-
-				}
-				contador++;
-
-			}
-
-		}
-
-		return procesoSelec;
-
-	}
 
 }
