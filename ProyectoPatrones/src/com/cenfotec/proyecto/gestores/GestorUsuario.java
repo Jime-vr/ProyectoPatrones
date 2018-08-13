@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 
- public class GestorUsuario {
+ public class GestorUsuario implements InterfaceGestores{
 	
 	private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 	private String correo = "correo default";
 	
-	public void quemarDatosUsuario() throws java.io.IOException {
+	public void quemarDatos() throws java.io.IOException {
 		
 		GestorTarea gestorTarea = new GestorTarea();
 		GestorProceso gestorProceso = new GestorProceso();
@@ -27,11 +28,7 @@ import com.cenfotec.proyecto.clases.Usuario;
 		listaUsuarios.add(usuario3);
 
 		Usuario usuario4 = new Usuario("Susana", "Zelaya", "gerencia", "susana@gmail.com", "741");
-		listaUsuarios.add(usuario4);
-		
-		ArrayList<Tarea> tareas = gestorTarea.quemarDatosTarea();
-		gestorProceso.quemarDatosProceso(tareas);
-		
+		listaUsuarios.add(usuario4);		
 	}
 	
 	public void guardarCorreoActual(String pcorreo) {
@@ -55,7 +52,6 @@ import com.cenfotec.proyecto.clases.Usuario;
 		return listaUsuarios;
 	}
 	
-	/* Se valida que el correo no este repetido */
 	public boolean validarCorreo(String pCorreo) throws IOException {
 		boolean error = false;
 
@@ -69,7 +65,6 @@ import com.cenfotec.proyecto.clases.Usuario;
 		return error;
 	}
 	
-	/* Valida los datos ingresados para el inicio de sesión */
 	public boolean iniciarSesion(String pCorreo, String pContrasenna) throws java.io.IOException {
 		boolean iniciar = false;
 		String correo, contrasenna;

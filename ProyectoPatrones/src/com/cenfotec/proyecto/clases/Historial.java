@@ -1,8 +1,5 @@
 package com.cenfotec.proyecto.clases;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Historial {
 	private String nomProceso;
 	private String tituloTarea;
@@ -66,8 +63,8 @@ public class Historial {
 	public String toString() {
 		String info = "";
 
-		info += "Se ejecutó el proceso: " + getNomProceso() + "/nSe completó la tarea: " + getTituloTarea() + "/nPor: "
-				+ getAutor() + "/nLa fecha: " + getFecha() + "/nA la hora: " + getHora() + "/n<-------------------------------->/n";
+		info += "Se ejecutó el proceso: " + getNomProceso() + '\n'+ "Se completó la tarea: " + getTituloTarea() + '\n'+ "Por: "
+				+ getAutor() + '\n'+ "La fecha: " + getFecha() + '\n'+ "A la hora: " + getHora() + '\n' + "<-------------------------------->" + '\n';
 		return info;
 	}
 }

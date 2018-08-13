@@ -3,27 +3,28 @@ package com.cenfotec.proyecto.gestores;
 import java.util.ArrayList;
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 
-public class GestorProceso {
-	
+public class GestorProceso implements InterfaceGestores {
+
 	public static ArrayList<Proceso> listaProcesos = new ArrayList<Proceso>();
-	
-	public void quemarDatosProceso(ArrayList<Tarea> tareas) throws java.io.IOException {
 
-		/* Proceso Contratación */
+	static GestorTarea gT = new GestorTarea();
+
+	public void quemarDatos() throws java.io.IOException {
+
+		ArrayList<Tarea> tareas = gT.obtenerTarea();
 		String nomProceso = "Contratación";
 
 		Proceso proceso = new Proceso();
 		proceso.setNomProceso(nomProceso);
 		proceso.setTareas(tareas);
 
-		GestorProceso procesoq = new GestorProceso();
-		procesoq.listaProcesos.add(proceso);
+		listaProcesos.add(proceso);
 
 		System.out.println("Listo!");
 	}
-	
-	
+
 	public ArrayList<Proceso> getListaProcesos() {
 		return listaProcesos;
 	}
@@ -31,8 +32,8 @@ public class GestorProceso {
 	public void setListaProcesos(ArrayList<Proceso> listaProcesos) {
 		GestorProceso.listaProcesos = listaProcesos;
 	}
-	
-	public void crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
+
+	public Proceso crearProceso(String pNomProceso, ArrayList<Tarea> pListaTareas) {
 		Proceso proceso = new Proceso();
 
 		proceso.setNomProceso(pNomProceso);
@@ -41,8 +42,9 @@ public class GestorProceso {
 		listaProcesos.add(proceso);
 
 		System.out.println("El proceso se ha almacenado correctamente");
+		return proceso;
 	}
-	
+
 	public static Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
 		int indice = pProceso.getIndiceTarea();
 		pProceso.setIndiceTarea(indice + 1);
@@ -50,7 +52,7 @@ public class GestorProceso {
 
 		return pProceso;
 	}
-	
+
 	public static void actualizarListaProcesos(Proceso pProAct) throws java.io.IOException {
 		String nomProAct = pProAct.getNomProceso();
 		Proceso proceso = new Proceso();
@@ -67,10 +69,7 @@ public class GestorProceso {
 		}
 
 		System.out.println("La tarea se completó satisfactoriamente");
-		
-		
+
 	}
-	
-	
 
 }
