@@ -10,7 +10,7 @@ public class MultiTarea {
 	
 	public static boolean crearTarea(String nombreProceso, String titulo, String grupo) throws Exception{
         boolean creado = false;    
-        String sql = "INSERT INTO tarea (nomProceso, titulo, grupo) VALUES ('"+nombreProceso+"', '"+titulo+"', '"+grupo+"');";
+        String sql = "INSERT INTO tarea (nomProceso, titulo, grupo, estado) VALUES ('"+nombreProceso+"', '"+titulo+"', '"+grupo+"' , 'false');";
 		
         try{
             Conector.getConector().ejecutarSQL(sql);
@@ -41,11 +41,27 @@ public class MultiTarea {
         while (rs.next()) {
         	tarea = new Tarea (rs.getString("nomProceso"), 
         			rs.getString("titulo"),
-            		rs.getString("grupo"));
+        			rs.getString("grupo"),
+            		rs.getString("estado"));
             tareas.add(tarea);
                  
         }
         
         return tareas;
+	}
+
+	public static void actualizarTarea(String nomProceso, String titulo) throws Exception {
+        String sql;
+        
+        sql = "UPDATE tarea SET estado = 'true' WHERE nomProceso= '"+nomProceso+"' AND titulo = '"+titulo+"';";
+        
+  
+        try{
+            Conector.getConector().ejecutarSQL(sql);
+            
+        }catch(Exception e){
+            throw new Exception(e);
+        }
+		
 	}
 }

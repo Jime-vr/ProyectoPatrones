@@ -66,8 +66,8 @@ public class Historial {
 	public String toString() {
 		String info = "";
 
-		info += "Se ejecutó el proceso: " + getNomProceso() + "/nSe completó la tarea: " + getTituloTarea() + "/nPor: "
-				+ getAutor() + "/nLa fecha: " + getFecha() + "/nA la hora: " + getHora() + "/n<-------------------------------->/n";
+		info += "Se ejecutó el proceso: " + getNomProceso() + "\nSe completó la tarea: " + getTituloTarea() + "\nPor: "
+				+ getAutor() + "\nLa fecha: " + getFecha() + "\nA la hora: " + getHora() + "\n<-------------------------------->\n";
 		return info;
 	}
 }

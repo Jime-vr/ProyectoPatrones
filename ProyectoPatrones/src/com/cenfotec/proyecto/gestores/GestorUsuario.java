@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 import com.cenfotec.proyecto.multi.MultiUsuario;
 
- public class GestorUsuario {
+ public class GestorUsuario implements InterfaceGestores{
 	
 	private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
 	private String correo = "correo default";
@@ -108,6 +109,12 @@ import com.cenfotec.proyecto.multi.MultiUsuario;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+
+	@Override
+	public void quemarDatos() throws IOException {
+		// TODO Auto-generated method stub
 		
 	}
  }

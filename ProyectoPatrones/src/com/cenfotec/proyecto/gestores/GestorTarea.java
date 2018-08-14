@@ -1,15 +1,17 @@
 package com.cenfotec.proyecto.gestores;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 import com.cenfotec.proyecto.multi.MultiIndicaciones;
 import com.cenfotec.proyecto.multi.MultiRespuesta;
 import com.cenfotec.proyecto.multi.MultiTarea;
 
-public class GestorTarea {
+public class GestorTarea implements InterfaceGestores{
 	
 	
 	public void crearTarea(String nomProceso, String pTitTarea, String pGrupo) {
@@ -62,11 +64,11 @@ public class GestorTarea {
 		return tareas;
 	}
 
-	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
-		pTarea.setRespuestas(pRespuestas);
-
-		return pTarea;
-	}
+//	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
+//		pTarea.setRespuestas(pRespuestas);
+//
+//		return pTarea;
+//	}
 
 	public static void crearIndicacion(String nomProceso, String indicacion, String titulo) {
 		try {
@@ -100,6 +102,21 @@ public class GestorTarea {
 
 	public void crearRespuesta(String nomProceso, String respuesta, String titulo) {
 		MultiRespuesta.crearRespuesta(nomProceso, respuesta, titulo);
+		
+	}
+
+	@Override
+	public void quemarDatos() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void actualizarTarea(String nomProceso, String titulo) {
+		try {
+			MultiTarea.actualizarTarea(nomProceso, titulo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

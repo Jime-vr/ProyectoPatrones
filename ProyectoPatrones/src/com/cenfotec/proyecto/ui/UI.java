@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.*;
 
 import com.cenfotec.proyecto.clases.*;
+import com.cenfotec.proyecto.fabrica.FabricaGestores;
+import com.cenfotec.proyecto.fabrica.TiposGestor;
 import com.cenfotec.proyecto.gestores.*;
-import com.cenfotec.proyecto.multi.Multi;
-import com.cenfotec.proyecto.multi.MultiUsuario;
+
 
 
 /*OBSERVACIONES
@@ -22,19 +24,24 @@ public class UI {
 
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static PrintStream out = System.out;
-	static GestorTarea gestorTarea = new GestorTarea();
+//	static GestorTarea gestorTarea = new GestorTarea();
 	static Usuario usuario = new Usuario();
 	static Tarea tarea = new Tarea();
 	static Proceso proceso = new Proceso();
-	static GestorHistorial gestorH = new GestorHistorial();
-	static GestorProceso gestorP = new GestorProceso();
-	static GestorUsuario gestorUsuario = new GestorUsuario();
+//	static GestorHistorial gestorH = new GestorHistorial();
+//	static GestorProceso gestorP = new GestorProceso();
+//	static GestorUsuario gestorUsuario = new GestorUsuario();
+	
+	static GestorHistorial gestorH = (GestorHistorial) FabricaGestores.instanciarGestores(TiposGestor.GHISTORIAL);
+	static GestorProceso gestorP = (GestorProceso) FabricaGestores.instanciarGestores(TiposGestor.GPROCESO);
+	static GestorTarea gestorTarea = (GestorTarea) FabricaGestores.instanciarGestores(TiposGestor.GTAREA);
+	static GestorUsuario gestorUsuario = (GestorUsuario) FabricaGestores.instanciarGestores(TiposGestor.GUSUARIO);
 	
 	
 	/* Se ingresan los datos para iniciar sesión */
 	public static void main(String[] args) throws Exception {
 		
-		MultiUsuario m = new MultiUsuario();
+		
 		menuInicial();
 
 	}
@@ -116,7 +123,6 @@ public class UI {
 			out.println();
 			opc = recOpc(pCorreo);
 			out.println();
-			out.println(" La opcion ingresada fue " + opc);
 			out.println();
 			noSalir = ejecutarMenuGrupo(opc, pCorreo);
 
@@ -141,10 +147,15 @@ public class UI {
 	static void mostrarMenu(String[] plista) {
 
 		out.println();
-
-		for (int i = 0; i < plista.length; i++) {
-			out.println(plista[i]);
+		
+		List<String> list = Arrays.asList(plista);
+		Iterator<String> iterator = list.iterator();
+		
+		while(iterator.hasNext()) {
+			out.println(iterator.next());
 		}
+		
+		
 		out.println();
 	}// eliminar metodo luego de modificar el verMenuGrupo
 
@@ -174,7 +185,8 @@ public class UI {
 			break;
 
 		case 3:
-			out.println(gestorH.verHistorial()); 
+			for(int i = 0; i < gestorH.verHistorial().size(); i++)
+			out.println(gestorH.verHistorial().get(i).toString()); 
 			break;
 
 		case 4:
@@ -194,7 +206,7 @@ public class UI {
 	/* Ejecuta los metodos de acuerdo a la opción ingresada por el usuario */
 	static boolean ejecutarMenuGrupo(int popcion, String pCorreo) throws java.io.IOException {
 		boolean noSalir = true;
-		int num = 0;
+		//int num = 0;
 
 		switch (popcion) {
 
@@ -203,7 +215,7 @@ public class UI {
 			break;
 
 		case 2:
-			num = verProcesos(pCorreo);
+			verProcesos(pCorreo);
 			break;
 
 		case 3:
@@ -257,7 +269,6 @@ public class UI {
 		
 	}// Enviar a Proceso
 
-	/* Se crean las partes de una tarea y retorna una lista de tareas */// *************************************************
 
 	public static void contruirTarea(int pCantTareas, String nomProceso) throws java.io.IOException {
 		String titTarea, grupo;
@@ -317,7 +328,7 @@ public class UI {
 			GestorTarea.crearIndicacion(nomProceso, resPregunta, titTarea);
 		}
 
-	}// *********************************************************************************************************************
+	}
 
 	/* Se registran los datos de un nuevo usuario */
 	static void registrarUsuario() throws java.io.IOException {
@@ -340,7 +351,7 @@ public class UI {
 				correo = in.readLine();
 
 				errorC = gestorUsuario.validarCorreo(correo);
-
+					out.println("errorc " + errorC);
 				if (errorC) {
 					out.println(
 							"El correo que desea registrar ya pertenece a un usuario registrado; Por favor digite un correo diferente");
@@ -365,14 +376,16 @@ public class UI {
 
 	/* Se validan los datos del usuario */
 	static boolean validarDatosUsuario(String[] pDatos) throws java.io.IOException {
+		out.println("ENTRA validar datos");
+		
 		boolean error = false;
-
-		for (int i = 0; i < pDatos.length; i++) {
+		
+		for(int i = 0; i < pDatos.length; i++) {
 			if (pDatos[i].equals("") || pDatos[i].equals(" ")) {
 				error = true;
 			}
 		}
-
+		
 		return error;
 	}
 
@@ -387,13 +400,13 @@ public class UI {
 
 		cantProc = verProcesos(pCorreo);
 
-		if (cantProc > 0) {
-			out.println("Ingrese el nombre de la tarea que desea realizar");
-			titulo = in.readLine();
-			out.println("Ingrese el nombre del proceso que desea realizar");
+		if (cantProc > 0 ) {
+			out.println("Ingrese el nombre de la proceso que desea realizar");
 			nomProceso = in.readLine();
-			indicacion = seleccionarProceso(titulo, nomProceso);
-			completarTarea(titulo, nomProceso, indicacion);
+			out.println("Ingrese el nombre del tarea que desea realizar");
+			titulo = in.readLine();
+			indicacion = seleccionarProceso(nomProceso, titulo);
+			completarTarea(titulo, nomProceso, indicacion, pCorreo);
 		}
 	}
 
@@ -401,20 +414,27 @@ public class UI {
 	 * Se muestran los procesos y las tareas de acuerdo al grupo que pertenece el
 	 * usuario
 	 */
-	static int verProcesos(String pCorreo) throws java.io.IOException {
+	static int verProcesos(String pCorreo) throws java.io.IOException {		
 		
 		Usuario usuario = gestorUsuario.obtenerUsuario(pCorreo);
 		ArrayList<Tarea> listaTareas = gestorTarea.obtenerTareas(usuario.getGrupo());
 		
+		Iterator<Tarea> iterator = listaTareas.iterator();
+		
 		int contador = 0;
 		
-		for (int i = 0; i < listaTareas.size(); i++) {
-			out.println("Proceso: " + listaTareas.get(i).getNomProceso());
-			out.println("Tarea: " + listaTareas.get(i).getTitulo());
+		while(iterator.hasNext()) {
+			
+			Tarea tempTarea = iterator.next();
+			
+			if(tempTarea.getEstado().equals("false")) {
+		
+			out.println("Proceso: " + tempTarea.getNomProceso()); 
+			out.println("Tarea: " + tempTarea.getTitulo());
 			out.println("");
 			out.println("<---------------------->");
 			contador++;
-			
+			}
 		}
 		
 		if (contador == 0) {
@@ -439,17 +459,22 @@ public class UI {
 	}// Enviar a Proceso
 
 	/* Se ejecuta la tarea de acuerdo al grupo del usuario */
-	static void completarTarea(String titulo, String nomProceso, ArrayList<String> indicaciones) throws java.io.IOException {
-		
-	
+	static void completarTarea(String titulo, String nomProceso, ArrayList<String> indicaciones, String pCorreo) throws java.io.IOException {
 		
 		String respuesta = "";
-
-		for (int i = 0; i < indicaciones.size(); i++) {
-			out.println(indicaciones.get(i));
+		
+		Iterator<String> iterator = indicaciones.iterator();
+		
+		while(iterator.hasNext()) {
+		
+			out.println(iterator.next());
 			respuesta = in.readLine();
 			
+			gestorTarea.actualizarTarea(nomProceso, titulo);
+			
 			gestorTarea.crearRespuesta(nomProceso,respuesta,titulo);
+			
+			GestorHistorial.registrarHistorial(nomProceso, titulo, pCorreo);
 		}
 
 

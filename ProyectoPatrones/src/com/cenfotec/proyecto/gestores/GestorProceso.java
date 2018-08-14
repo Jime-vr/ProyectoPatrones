@@ -1,12 +1,14 @@
 package com.cenfotec.proyecto.gestores;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
+import com.cenfotec.proyecto.fabrica.InterfaceGestores;
 import com.cenfotec.proyecto.multi.MultiProceso;
 
-public class GestorProceso {
+public class GestorProceso implements InterfaceGestores{
 	
 	
 
@@ -43,6 +45,12 @@ public class GestorProceso {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void quemarDatos() throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 //	public Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
