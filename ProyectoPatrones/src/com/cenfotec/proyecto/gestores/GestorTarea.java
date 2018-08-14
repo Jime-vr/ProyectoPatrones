@@ -2,25 +2,29 @@ package com.cenfotec.proyecto.gestores;
 
 import java.util.ArrayList;
 
+import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
+import com.cenfotec.proyecto.clases.Usuario;
+import com.cenfotec.proyecto.multi.MultiIndicaciones;
+import com.cenfotec.proyecto.multi.MultiRespuesta;
+import com.cenfotec.proyecto.multi.MultiTarea;
 
 public class GestorTarea {
 	
 	
-	public Tarea crearTarea(String pTitTarea, String pGrupo, ArrayList<String> pListaIndicaciones)
-			throws java.io.IOException {
-		Tarea tarea = new Tarea();
+	public void crearTarea(String nomProceso, String pTitTarea, String pGrupo) {
+		try {
+			MultiTarea.crearTarea(nomProceso, pTitTarea, pGrupo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		tarea.setTitulo(pTitTarea);
-		tarea.setGrupoResponsable(pGrupo);
-		tarea.setIndicaciones(pListaIndicaciones);
-
-		return tarea;
 	}
 	
 	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
 
-		
+		/* Tareas del proceso Contratación */
 		String titTar = "Formulario de empleado";
 		String grupo = "Recursos";
 		ArrayList<String> indicaciones1 = new ArrayList<String>();
@@ -63,5 +67,43 @@ public class GestorTarea {
 
 		return pTarea;
 	}
+
+	public static void crearIndicacion(String nomProceso, String indicacion, String titulo) {
+		try {
+			MultiIndicaciones.crearIndicacion(nomProceso, indicacion, titulo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public ArrayList<Tarea> obtenerTareas(String grupo) {
+		try {
+			return MultiTarea.obtenerTareas(grupo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public ArrayList<String> obtenerIndicaciones(String nomProceso, String titulo) {
+		try {
+			return MultiIndicaciones.obtenerIndicaciones(nomProceso, titulo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void crearRespuesta(String nomProceso, String respuesta, String titulo) {
+		MultiRespuesta.crearRespuesta(nomProceso, respuesta, titulo);
+		
+	}
+	
+	
+	
 	
 }

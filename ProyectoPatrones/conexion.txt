@@ -1,0 +1,2 @@
+jdbc:mysql://localhost/bd_patrones?user=root&password=
+com.mysql.cj.jdbc.Drive
