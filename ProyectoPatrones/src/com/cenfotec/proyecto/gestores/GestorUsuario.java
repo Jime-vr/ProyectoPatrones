@@ -49,65 +49,92 @@ import com.cenfotec.proyecto.multi.MultiUsuario;
 		return listaUsuarios;
 	}
 	
-	/* Se valida que el correo no este repetido */
+	
 	public boolean validarCorreo(String pCorreo) {
 
 		try {
+			
 			return MultiUsuario.revisarCorreo(pCorreo);
+			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			
 			return false;
+			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
+			
 			return false;
+			
 		}
+		
 	}
 	
-	/* Valida los datos ingresados para el inicio de sesión */
+
 	public boolean iniciarSesion(String pCorreo, String pContrasenna) throws java.io.IOException {
 		
 		try {
+			
 			return MultiUsuario.iniciarSesion(pCorreo, pContrasenna);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 			return false;
+			
 		}
+		
 	}
 	
 
 	
 	public boolean validarDatosUsuario(String[] pDatos) throws java.io.IOException {
+		
 		boolean error = false;
 
 		for (int i = 0; i < pDatos.length; i++) {
+			
 			if (pDatos[i].equals("") || pDatos[i].equals(" ")) {
 				error = true;
+				
 			}
+			
 		}
  
 		return error;
 	}
 
 	public Usuario obtenerUsuario(String pCorreo) {
-		// TODO Auto-generated method stub
+		
 		try {
+			
 			return MultiUsuario.informacionUsuario(pCorreo);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 			return null;
-		}
-	}
-
-	public void crearUsuario(String nombre, String apellido, String grupo, String correo, String contrasenna) {
-		try {
-			MultiUsuario.crearUsuario(nombre, apellido, grupo, correo, contrasenna);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		
 	}
+
+	public void crearUsuario(String nombre, String apellido, String grupo, String correo, String contrasenna) {
+		
+		try {
+			
+			MultiUsuario.crearUsuario(nombre, apellido, grupo, correo, contrasenna);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
  }

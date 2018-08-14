@@ -18,20 +18,20 @@ class GestorProcesoTest {
 	GestorTarea gestor = new GestorTarea();
 	GestorProceso gestorP = new GestorProceso();
 
-	@Test
-	void CrearProcesoTest() throws IOException {
-
-		Tarea tareaTest = new Tarea();
-		Proceso proceso = new Proceso();
-		ArrayList<String> indicaciones = new ArrayList<String>();
-		ArrayList<Tarea> tareas = new ArrayList<Tarea>();
-		indicaciones.addAll(Arrays.asList("¿Es mayor de edad?"));
-		tareaTest = gestor.crearTarea("Valoración edad", "Recursos", indicaciones);
-		tareas.add(tareaTest);
-		
-		proceso = gestorP.crearProceso("Registro", tareas);
-		assertTrue(proceso.getNomProceso() == "Registro");
-
-	}
+//	@Test
+//	void CrearProcesoTest() throws IOException {
+//
+//		Tarea tareaTest = new Tarea();
+//		Proceso proceso = new Proceso();
+//		ArrayList<String> indicaciones = new ArrayList<String>();
+//		ArrayList<Tarea> tareas = new ArrayList<Tarea>();
+//		indicaciones.addAll(Arrays.asList("¿Es mayor de edad?"));
+//		tareaTest = gestor.crearTarea("Valoración edad", "Recursos", indicaciones);
+//		tareas.add(tareaTest);
+//		
+//		proceso = gestorP.crearProceso("Registro", tareas);
+//		assertTrue(proceso.getNomProceso() == "Registro");
+//
+//	}
 
 }

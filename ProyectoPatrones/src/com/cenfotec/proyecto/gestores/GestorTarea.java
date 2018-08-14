@@ -10,21 +10,23 @@ import com.cenfotec.proyecto.multi.MultiRespuesta;
 import com.cenfotec.proyecto.multi.MultiTarea;
 
 public class GestorTarea {
-	
-	
+
 	public void crearTarea(String nomProceso, String pTitTarea, String pGrupo) {
+		
 		try {
+			
 			MultiTarea.crearTarea(nomProceso, pTitTarea, pGrupo);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 		}
 
 	}
-	
+
 	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
 
-		/* Tareas del proceso Contratación */
 		String titTar = "Formulario de empleado";
 		String grupo = "Recursos";
 		ArrayList<String> indicaciones1 = new ArrayList<String>();
@@ -60,50 +62,67 @@ public class GestorTarea {
 		tareas.add(tarea3);
 
 		return tareas;
+		
 	}
 
 	public Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
+		
 		pTarea.setRespuestas(pRespuestas);
 
 		return pTarea;
+		
 	}
 
 	public static void crearIndicacion(String nomProceso, String indicacion, String titulo) {
-		try {
-			MultiIndicaciones.crearIndicacion(nomProceso, indicacion, titulo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		try {
+			
+			MultiIndicaciones.crearIndicacion(nomProceso, indicacion, titulo);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+
 	}
 
 	public ArrayList<Tarea> obtenerTareas(String grupo) {
+		
 		try {
+			
 			return MultiTarea.obtenerTareas(grupo);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 			return null;
+			
 		}
+		
 	}
 
 	public ArrayList<String> obtenerIndicaciones(String nomProceso, String titulo) {
+		
 		try {
+			
 			return MultiIndicaciones.obtenerIndicaciones(nomProceso, titulo);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 			return null;
+			
 		}
+		
 	}
 
 	public void crearRespuesta(String nomProceso, String respuesta, String titulo) {
-		MultiRespuesta.crearRespuesta(nomProceso, respuesta, titulo);
 		
+		MultiRespuesta.crearRespuesta(nomProceso, respuesta, titulo);
+
 	}
-	
-	
-	
-	
+
 }

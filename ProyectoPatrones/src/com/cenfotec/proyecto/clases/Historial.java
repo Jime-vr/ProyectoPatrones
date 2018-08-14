@@ -59,12 +59,13 @@ public class Historial {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-	
+
 	public String toString() {
 		String info = "";
 
-		info += "Se ejecutó el proceso: " + getNomProceso() + '\n'+ "Se completó la tarea: " + getTituloTarea() + '\n'+ "Por: "
-				+ getAutor() + '\n'+ "La fecha: " + getFecha() + '\n'+ "A la hora: " + getHora() + '\n' + "<-------------------------------->" + '\n';
+		info += "Se ejecutó el proceso: " + getNomProceso() + '\n' + "Se completó la tarea: " + getTituloTarea() + '\n'
+				+ "Por: " + getAutor() + '\n' + "La fecha: " + getFecha() + '\n' + "A la hora: " + getHora() + '\n'
+				+ "<-------------------------------->" + '\n';
 		return info;
 	}
 }

@@ -37,12 +37,18 @@ public class GestorProceso {
 //	}
 	
 	public void crearProceso(String pNomProceso) {
+		
 		try {
+			
 			MultiProceso.crearProceso(pNomProceso);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
+			
 			e.printStackTrace();
+			
 		}
+		
 	}
 	
 //	public Proceso actulizarProceso(Proceso pProceso, ArrayList<Tarea> pListaTareas) throws java.io.IOException {
