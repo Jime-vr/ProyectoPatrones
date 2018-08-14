@@ -1,40 +1,31 @@
 package com.cenfotec.proyecto.gestores;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.util.ArrayList;
-<<<<<<< HEAD
+
 import com.cenfotec.proyecto.clases.Proceso;
 import com.cenfotec.proyecto.clases.Tarea;
 import com.cenfotec.proyecto.clases.Usuario;
 import com.cenfotec.proyecto.fabrica.InterfaceGestores;
-=======
-
-import com.cenfotec.proyecto.clases.Tarea;
->>>>>>> josue_calderon
+import com.cenfotec.proyecto.multi.MultiIndicaciones;
+import com.cenfotec.proyecto.multi.MultiRespuesta;
+import com.cenfotec.proyecto.multi.MultiTarea;
 
 public class GestorTarea implements InterfaceGestores{
 	
-<<<<<<< HEAD
-	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-=======
-	static ArrayList<Tarea> infoTarea = new ArrayList<Tarea>();
->>>>>>> Rafa_Bricenoa
 	
-	public Tarea crearTarea(String pTitTarea, String pGrupo, ArrayList<String> pListaIndicaciones)
-			throws java.io.IOException {
-		Tarea tarea = new Tarea();
+	public void crearTarea(String nomProceso, String pTitTarea, String pGrupo) {
+		try {
+			MultiTarea.crearTarea(nomProceso, pTitTarea, pGrupo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		tarea.setTitulo(pTitTarea);
-		tarea.setGrupoResponsable(pGrupo);
-		tarea.setIndicaciones(pListaIndicaciones);
-
-		return tarea;
 	}
 	
-	public void quemarDatos() throws java.io.IOException {
+	public ArrayList<Tarea> quemarDatosTarea() throws java.io.IOException {
 
-		
+	
 		String titTar = "Formulario de empleado";
 		String grupo = "Recursos";
 		ArrayList<String> indicaciones1 = new ArrayList<String>();
@@ -56,7 +47,7 @@ public class GestorTarea implements InterfaceGestores{
 		tarea2.setIndicaciones(indicaciones2);
 
 		String titTar3 = "Asignación de puesto";
-		String grupo3 = "gerencia";
+		String grupo3 = "Gerencia";
 		ArrayList<String> indicaciones3 = new ArrayList<String>();
 		indicaciones3.add("Indique el puesto del empleado");
 		Tarea tarea3 = new Tarea();
@@ -64,42 +55,67 @@ public class GestorTarea implements InterfaceGestores{
 		tarea3.setGrupoResponsable(grupo3);
 		tarea3.setIndicaciones(indicaciones3);
 
-		infoTarea.add(tarea1);
-		infoTarea.add(tarea2);
-		infoTarea.add(tarea3);
-	}
-	
-	public ArrayList<Tarea> obtenerTarea(){
-		return infoTarea;
+		ArrayList<Tarea> tareas = new ArrayList<Tarea>();
+		tareas.add(tarea1);
+		tareas.add(tarea2);
+		tareas.add(tarea3);
+
+		return tareas;
 	}
 
-	public static Tarea actualizarTarea(Tarea pTarea, ArrayList<String> pRespuestas) throws java.io.IOException {
-		pTarea.setRespuestas(pRespuestas);
 
-		return pTarea;
-	}
-	
-	public static void completarTarea(Proceso pProceso, String pCorreo) throws java.io.IOException {
-		int indice = pProceso.getIndiceTarea();
-		ArrayList<Tarea> listaTareas = pProceso.getTareas();
-		Tarea tarea = listaTareas.get(indice);
-		ArrayList<String> indicaciones = tarea.getIndicaciones();
-		ArrayList<String> respuestas = new ArrayList<String>();
-		Tarea tarAct = new Tarea();
-		Proceso proAct = new Proceso();
-		Usuario usuario = GestorUsuario.obtenerUsuario(pCorreo);
 
-		for (int i = 0; i < indicaciones.size(); i++) {
-			System.out.println(indicaciones.get(i));
-			respuestas.add(in.readLine());
+	public static void crearIndicacion(String nomProceso, String indicacion, String titulo) {
+		try {
+			MultiIndicaciones.crearIndicacion(nomProceso, indicacion, titulo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		tarAct = actualizarTarea(tarea, respuestas);
-		listaTareas.remove(indice);
-		listaTareas.add(indice, tarAct);
-		proAct = GestorProceso.actulizarProceso(pProceso, listaTareas);
-		GestorProceso.actualizarListaProcesos(proAct);
-
-		GestorHistorial.registrarHistorial(pProceso.getNomProceso(), tarea.getTitulo(), usuario.getNombre() + " " + usuario.getApellido());
+		
 	}
+
+	public ArrayList<Tarea> obtenerTareas(String grupo) {
+		try {
+			return MultiTarea.obtenerTareas(grupo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public ArrayList<String> obtenerIndicaciones(String nomProceso, String titulo) {
+		try {
+			return MultiIndicaciones.obtenerIndicaciones(nomProceso, titulo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void crearRespuesta(String nomProceso, String respuesta, String titulo) {
+		MultiRespuesta.crearRespuesta(nomProceso, respuesta, titulo);
+		
+	}
+
+	@Override
+	public void quemarDatos() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void actualizarTarea(String nomProceso, String titulo) {
+		try {
+			MultiTarea.actualizarTarea(nomProceso, titulo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
 }

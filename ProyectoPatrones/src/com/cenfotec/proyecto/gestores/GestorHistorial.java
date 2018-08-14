@@ -1,11 +1,13 @@
 package com.cenfotec.proyecto.gestores;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 import com.cenfotec.proyecto.clases.Historial;
 import com.cenfotec.proyecto.fabrica.InterfaceGestores;
+import com.cenfotec.proyecto.multi.MultiHistorial;
 
 public class GestorHistorial implements InterfaceGestores{
 
@@ -19,7 +21,7 @@ public class GestorHistorial implements InterfaceGestores{
 		GestorHistorial.listaHistorial = listaHistorial;
 	}
 
-	public static Historial registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
+	public static void registrarHistorial(String pNomProceso, String pTituloTarea, String pAutor) throws java.io.IOException {
 		String fecha, hora;
 		int anno, dia, mes, minuto, horas, segundos;
 
@@ -38,32 +40,26 @@ public class GestorHistorial implements InterfaceGestores{
 
 		hora = horas + ":" + minuto + ":" + segundos;
 
-		Historial historial = new Historial(pNomProceso, pTituloTarea, pAutor, fecha, hora);
-		listaHistorial.add(historial);
-		return historial;
+		try {
+			MultiHistorial.crearHistorial(pNomProceso, pTituloTarea, pAutor, fecha, hora);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
-	public String verHistorial() throws java.io.IOException {
+	public ArrayList<Historial> verHistorial() throws java.io.IOException {
 
-		String info = "";
-		
-		ArrayList<Historial> listaHistorial = getListaHistorial();
-		Historial historial;
-
-		if (listaHistorial.size() != 0) {
-			for (int i = 0; i < listaHistorial.size(); i++) {
-				historial = listaHistorial.get(i);
-				info += historial.toString() + "/n";
-			}
-		} else {
-			info =  "No se han ejecutado procesos";
+		try {
+			return MultiHistorial.historial();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return info;
 	}
 
 	@Override
 	public void quemarDatos() throws IOException {
-		// TODO Auto-generated method stub
 		
 	}
 }

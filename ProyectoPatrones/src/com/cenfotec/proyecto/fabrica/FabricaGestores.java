@@ -18,6 +18,6 @@ public class FabricaGestores {
 			return new GestorUsuario();
 		default:
 			return null;
-		}//hola
+		}
 	}
 }
